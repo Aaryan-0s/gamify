@@ -1,1 +1,1 @@
-# gamification
+# gamification of fitness application
