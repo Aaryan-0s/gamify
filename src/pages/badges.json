@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "High Score Badge",
+      "condition": "pushUpHighest > 100",
+      "image": "https://i.ibb.co/xXgH8ST/Screenshot-2024-01-27-102248.png"
+    },
+    {
+      "id": 2,
+      "name": "Dedication Badge",
+      "condition": "timeSpent > 10",
+      "image": "https://i.ibb.co/kcy5rKm/Screenshot-2024-01-27-103030.png"
+    },
+    {
+      "id": 3,
+      "name": "Achievement Badge",
+      "condition": "totalPoints >= 200",
+      "image": "https://i.ibb.co/xXgH8ST/Screenshot-2024-01-27-102248.png"
+    },
+    {
+      "id": 4,
+      "name": "Push Up Badge",
+      "condition": "pushUpHighest >= 50",
+      "image": "https://i.ibb.co/xXgH8ST/Screenshot-2024-01-27-102248.png"
+    },
+    {
+      "id": 5,
+      "name": "Time Badge",
+      "condition": "timeSpent >= 5",
+      "image": "https://i.ibb.co/xXgH8ST/Screenshot-2024-01-27-102248.png"
+    },
+    {
+      "id": 6,
+      "name": "Points Badge",
+      "condition": "totalPoints >= 100",
+      "image": "https://i.ibb.co/xXgH8ST/Screenshot-2024-01-27-102248.png"
+    }
+  ]

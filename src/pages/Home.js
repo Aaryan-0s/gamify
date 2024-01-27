@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 import activityImgURL from "../assets/images/cookies.svg";
+import badgesData from './badges.json';
 import pushupImage from "../assets/images/pushup.png";
 import bicepCurlsImage from "../assets/images/bicepcurls.png";
 
@@ -125,6 +126,7 @@ export const Home = () => {
       const data = sevenDaysSnapshot.docs.map((doc) => doc.data());
       setGoalsMeasuremnets(data);
     }
+    
 
     const sevenDaysData = async () => {
       const sevenDaysCol = collection(db, `user/${uid}/sevenDays`);
@@ -168,7 +170,11 @@ export const Home = () => {
   }, []);
 
  
-
+  const getEarnedBadges = () => {
+    return badgesData.filter((badge) => {
+      const conditionResult = eval(badge.condition); // Evaluate the condition
+      return typeof conditionResult === 'boolean' && conditionResult; // Ensure it's a boolean result
+    });};
   const [bicepsTime, setBicepsTime] = useState("");
   const [pushUpTime, setPushUpTime] = useState("");
 
@@ -370,7 +376,7 @@ export const Home = () => {
       
      
     ]; // in minutes
-  
+    
 
 
     return {
@@ -397,6 +403,8 @@ export const Home = () => {
     };
   };
   const exerciseTimeChartData = generateExerciseTimeChartData();
+  const earnedBadges = getEarnedBadges();
+    console.log(earnedBadges)
   return (
     <>
       <HomeHeader donutCount={totalPoints} />
@@ -500,6 +508,7 @@ export const Home = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                background: "#fff",
                 maxWidth: { lg: "300px", sm: "300px", xs: "100%" },
                 width: "100%",
                 borderRadius: "24px",
@@ -545,7 +554,7 @@ export const Home = () => {
                 <Typography
                   variant="body1"
                   sx={{
-                    color: "#fff",
+                    color: "black",
                     textAlign: "center",
                     paddingBottom: "1rem",
                   }}
@@ -589,6 +598,7 @@ export const Home = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
+                  background: "#fff",
                   justifyContent: "space-around",
                   alignItems: "center",
                   maxWidth: { lg: "300px", sm: "300px", xs: "100%" },
@@ -633,7 +643,7 @@ export const Home = () => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: "#fff",
+                    color: "black",
                     padding: "1rem",
                     textAlign: "center",
                     fontSize: "1.2rem",
@@ -658,6 +668,7 @@ export const Home = () => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
+                background: "#fff",
                 maxWidth: { lg: "300px", sm: "300px", xs: "100%" },
                 width: "100%",
                 borderRadius: "24px",
@@ -667,7 +678,7 @@ export const Home = () => {
               }}
               className="glassmorphism"
             >
-              <Typography variant="h5" color="secondary">
+              <Typography variant="h5" color="black">
                 Your favourite exercise is :{favExcerise}{" "}
                 <EmojiEmotionsOutlined />
               </Typography>
@@ -723,6 +734,7 @@ export const Home = () => {
             padding: "1rem",
             // height: { lg: "100vh", sm: "100%", xs: "100%" },
           }}
+          
         >
           {weight.length === 0 || goalWeight.length === 0 ? (
             <Typography
@@ -753,6 +765,7 @@ export const Home = () => {
 
                 borderRadius: "24px",
               }}
+              
             >
               <Box
                 sx={{
@@ -782,6 +795,7 @@ export const Home = () => {
                     color: "#00040f",
                     padding: "1rem",
                   }}
+                  className="glassmorphism"
                 >
                   <Line
                     data={weightLineGraphData}
@@ -851,6 +865,7 @@ export const Home = () => {
                     color: "#00040f",
                     padding: "1rem",
                   }}
+                  className="glassmorphism"
                 >
                   <Line
                     data={bmiLineGraphData}
@@ -919,6 +934,7 @@ export const Home = () => {
                     alignItems: "center",
                     flexDirection: "column",
                   }}
+                  
                 >
                   <Box
                     sx={{
@@ -994,52 +1010,114 @@ export const Home = () => {
           )}
         </Box>
         <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "1rem",
-          width: { lg: "100%", sm: "80%", xs: "100%" },
-          borderRadius: "24px",
-          background: "#fff",
-          color: "#00040f",
-          padding: "1rem",
-          flexDirection: "column",
-        }}
-        className="glassmorphism"
-      >
-        <Typography variant="h5" color="primary">
-          High Scores
-        </Typography>
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "2rem",
+    width: "100%", // Adjust the width as needed
+  }}
+>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "1rem",
+      width: { lg: "100%", sm: "80%", xs: "100%" },
+      borderRadius: "24px",
+      background: "#fff",
+      color: "#00040f",
+      padding: "1rem",
+      flexDirection: "column",
+    }}
+    className="glassmorphism"
+  >
+    <Typography variant="h5" color="primary">
+      High Scores
+    </Typography>
 
-        {/* High Score Table */}
-        <HighScoreChart
-          pushUpHighest={pushUpHighest}
-          bicepHighest={bicepHighest}
-        />
-      </Box>
+    {/* High Score Table */}
+    <HighScoreChart
+      pushUpHighest={pushUpHighest}
+      bicepHighest={bicepHighest}
+    />
+  </Box>
 
-      {/* Popular Exercise of the Week Box */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "1rem",
-          width: { lg: "100%", sm: "100%", xs: "80%" },
-          backgroundColor: "#ffff",
-          borderRadius: "24px",
-          padding: "1rem",
-          flexDirection: "column",
-        }}
-        className="glassmorphism"
-      >
-        <Typography variant="h5" color="primary">
-          Popular Exercise of the Week
-        </Typography>
-        <Leaderboard users={userDataList} />
-       
-      </Box>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "1rem",
+      width: { lg: "100%", sm: "100%", xs: "80%" },
+      backgroundColor: "#ffff",
+      borderRadius: "24px",
+      padding: "1rem",
+      flexDirection: "column",
+    }}
+    className="glassmorphism"
+  >
+    <Typography variant="h5" color="primary">
+      Popular Exercise of the Week
+    </Typography>
+    <Leaderboard users={userDataList} />
+  </Box>
+
+  {earnedBadges.length > 0 && (
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "1rem",
+      width: { lg: "100%", sm: "100%", xs: "80%" },
+      backgroundColor: "#ffff",
+      borderRadius: "24px",
+      padding: "1rem",
+      flexDirection: "column",
+    }}
+    className="glassmorphism"
+  >
+    <Typography variant="h5" color="primary">
+      Earned Badges
+    </Typography>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        width: "100%",
+        gap: "1rem",
+      }}
+    >
+      {earnedBadges.map((badge) => (
+        <Box
+          key={badge.id}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={badge.image}
+            alt={badge.name}
+            width="50px"
+            height="50px"
+            style={{ borderRadius: "50%" }} // Apply circular border-radius
+          />
+          <Typography variant="body2" color="primary">
+            {badge.name}
+          </Typography>
+        </Box>
+      ))}
+    </Box>
+  </Box>
+)}
+</Box>
+
       </Container>
     </>
   );
