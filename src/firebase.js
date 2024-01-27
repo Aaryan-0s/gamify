@@ -11,20 +11,22 @@ import { getStorage } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC0FlgK1Uw8-sjlcF6Cb2V3rqEbc5DCMmw",
+  apiKey: "AIzaSyBMx26yx6ICUxPwmkDAcsgO2qvMugUCSbo",
 
-  authDomain: "ar-fitness3-339e2.firebaseapp.com",
+  authDomain: "gamify-fitness.firebaseapp.com",
 
-  projectId: "ar-fitness3-339e2",
+  projectId: "gamify-fitness",
 
-  storageBucket: "ar-fitness3-339e2.appspot.com",
+  storageBucket: "gamify-fitness.appspot.com",
 
-  messagingSenderId: "903359995906",
+  messagingSenderId: "323688820442",
 
-  appId: "1:903359995906:web:7a24ac48e191fbceee871b",
+  appId: "1:323688820442:web:cafc9556168fe802f03fe3",
 
-  measurementId: "G-TV2M17W28D"
+  measurementId: "G-P2X6S0Z3JK"
+
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

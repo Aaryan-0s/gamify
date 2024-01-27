@@ -279,14 +279,14 @@ export const Home = () => {
       setWeightData(weightObj);
     }
     if (
-      bicepLength.length > pushUpLength.length 
+      bicepsTime > pushUpTime 
       
     ) {
       setFavExcerise("Biceps");
-      console.log(favExcerise);
+      console.log(bicepsTime, pushUpTime);
     }
     if (
-      pushUpLength.length > bicepLength.length 
+      pushUpTime > bicepsTime
     ) {
       setFavExcerise("Push Ups");
       console.log(favExcerise);
@@ -459,7 +459,7 @@ export const Home = () => {
                   fontSize: { lg: "2rem", sm: "1.5rem", xs: "1rem" },
                 }}
               >
-                Welcome to AR FITNESS!
+                Welcome to Gamify FITNESS!
               </Typography>
               <Typography
                 variant="h4"

@@ -22,7 +22,7 @@ const speak = (count) => {
   object.lang = "en-US";
   speech.speak(object);
 };
-const BicepCurls = () => {
+const PushUps = () => {
   const navigate = useNavigate();
   if (!Cookies.get("userID")) {
     alert("Please Login");
@@ -98,14 +98,14 @@ const BicepCurls = () => {
       //canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height)
 
       let inRangeRightHand;
-      if (rightHandAngle <= 60) {
+      if (rightHandAngle <= 80) {
         inRangeRightHand = true;
       } else {
         inRangeRightHand = false;
       }
 
       let inRangeLeftHand;
-      if (leftHandAngle <= 60) {
+      if (leftHandAngle <= 80) {
         inRangeLeftHand = true;
       } else {
         inRangeLeftHand = false;
@@ -426,4 +426,4 @@ const BicepCurls = () => {
   );
 };
 
-export default BicepCurls;
+export default PushUps;
